@@ -12,16 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#include "../common/consistentHash.h"
 
+#include <iostream>
+#include <vector>
+using namespace std;
 
-技术点:
-1)  一致性哈希
-2)  套接字
-3)  状态机回复
-4)  日志模块
-
-功能划分:
-1)  主动扩容
-2)  主动缩容
-3)  被动缩容
-4)  Master容灾
+class Manager{
+public:
+    Manager(){}
+private:
+    vector<string> cacheServers;
+    ConsistentHash* conHash;
+};

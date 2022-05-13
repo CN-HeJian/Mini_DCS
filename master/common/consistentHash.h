@@ -14,14 +14,19 @@
 
 
 
-技术点:
-1)  一致性哈希
-2)  套接字
-3)  状态机回复
-4)  日志模块
+#ifndef CACHESYSTEM_CONSISTENT_H
+#define CACHESYSTEM_CONSISTENT_H
 
-功能划分:
-1)  主动扩容
-2)  主动缩容
-3)  被动缩容
-4)  Master容灾
+#include <iostream>
+#include <string>
+using namespace std;
+
+class ConsistentHash{
+public:
+    uint32_t hash(string k);
+private:
+    
+};
+
+
+#endif //CACHESYSTEM_CONSISTENT_H
