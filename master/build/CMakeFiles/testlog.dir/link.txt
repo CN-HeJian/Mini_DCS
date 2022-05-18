@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/testlog.dir/test/test_log.cpp.o CMakeFiles/testlog.dir/common/log.cpp.o  -o testlog  -lpthread 
