@@ -35,5 +35,5 @@
 
 # Idea
 .idea
-.master/build
-.master/cmake-build-debug
+.master/build/
+.master/cmake-build-debug/
