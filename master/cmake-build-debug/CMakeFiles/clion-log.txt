@@ -1,0 +1,4 @@
+"D:\CLion 2021.2.2\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_COMPILER=E:/mingw/mingw64/bin/g++.exe -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - MinGW Makefiles" \\wsl$\Ubuntu-20.04\home\icf\icf\CacheSystem\master
+-- Configuring done
+-- Generating done
+-- Build files have been written to: //wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug
