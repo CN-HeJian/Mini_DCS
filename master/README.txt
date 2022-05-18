@@ -28,7 +28,17 @@
 
 公有模块
 1) consistentHash
+    1、哈希函数
+    2、增加虚拟节点，防止雪崩效应
+    3、增加一个机器
+    4、删除一个机器
+    5、依据key得到在哪个机器对应的ipPort
 2) epoll
 3) safeQueue
+    1、https://www.freeaihub.com/post/93796.html    
+    1、环形数组
+    2、线程函数
 4) json
 5) threadPool
+6）log
+    1、

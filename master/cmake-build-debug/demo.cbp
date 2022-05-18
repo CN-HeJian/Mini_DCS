@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="demo"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="E:/mingw/mingw64/bin/mingw32-make.exe -f &quot;//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="E:/mingw/mingw64/bin/mingw32-make.exe -f &quot;//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="E:/mingw/mingw64/bin/mingw32-make.exe -f &quot;//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="E:/mingw/mingw64/bin/mingw32-make.exe -f &quot;//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="master">
+				<Option output="//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/master.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="E:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="E:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="E:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="E:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
+					<Add directory="E:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="E:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="E:/mingw/mingw64/bin/mingw32-make.exe -f &quot;//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/Makefile&quot;  VERBOSE=1 master"/>
+					<CompileFile command="E:/mingw/mingw64/bin/mingw32-make.exe -f &quot;//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="E:/mingw/mingw64/bin/mingw32-make.exe -f &quot;//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="E:/mingw/mingw64/bin/mingw32-make.exe -f &quot;//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="master/fast">
+				<Option output="//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/master.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="E:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="E:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="E:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="E:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
+					<Add directory="E:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="E:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="E:/mingw/mingw64/bin/mingw32-make.exe -f &quot;//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/Makefile&quot;  VERBOSE=1 master/fast"/>
+					<CompileFile command="E:/mingw/mingw64/bin/mingw32-make.exe -f &quot;//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="E:/mingw/mingw64/bin/mingw32-make.exe -f &quot;//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="E:/mingw/mingw64/bin/mingw32-make.exe -f &quot;//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="E:/mingw/mingw64/bin/mingw32-make.exe -f &quot;//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="E:/mingw/mingw64/bin/mingw32-make.exe -f &quot;//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="E:/mingw/mingw64/bin/mingw32-make.exe -f &quot;//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="E:/mingw/mingw64/bin/mingw32-make.exe -f &quot;//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="testConsistentHash">
+				<Option output="//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/testConsistentHash.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="E:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="E:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="E:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="E:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
+					<Add directory="E:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="E:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="E:/mingw/mingw64/bin/mingw32-make.exe -f &quot;//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/Makefile&quot;  VERBOSE=1 testConsistentHash"/>
+					<CompileFile command="E:/mingw/mingw64/bin/mingw32-make.exe -f &quot;//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="E:/mingw/mingw64/bin/mingw32-make.exe -f &quot;//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="E:/mingw/mingw64/bin/mingw32-make.exe -f &quot;//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="testConsistentHash/fast">
+				<Option output="//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/testConsistentHash.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="E:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="E:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="E:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="E:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
+					<Add directory="E:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="E:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="E:/mingw/mingw64/bin/mingw32-make.exe -f &quot;//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/Makefile&quot;  VERBOSE=1 testConsistentHash/fast"/>
+					<CompileFile command="E:/mingw/mingw64/bin/mingw32-make.exe -f &quot;//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="E:/mingw/mingw64/bin/mingw32-make.exe -f &quot;//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="E:/mingw/mingw64/bin/mingw32-make.exe -f &quot;//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="testlog">
+				<Option output="//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/testlog.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="E:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="E:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="E:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="E:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
+					<Add directory="E:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="E:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="E:/mingw/mingw64/bin/mingw32-make.exe -f &quot;//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/Makefile&quot;  VERBOSE=1 testlog"/>
+					<CompileFile command="E:/mingw/mingw64/bin/mingw32-make.exe -f &quot;//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="E:/mingw/mingw64/bin/mingw32-make.exe -f &quot;//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="E:/mingw/mingw64/bin/mingw32-make.exe -f &quot;//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="testlog/fast">
+				<Option output="//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/testlog.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="E:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="E:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="E:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="E:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
+					<Add directory="E:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="E:/mingw/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="E:/mingw/mingw64/bin/mingw32-make.exe -f &quot;//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/Makefile&quot;  VERBOSE=1 testlog/fast"/>
+					<CompileFile command="E:/mingw/mingw64/bin/mingw32-make.exe -f &quot;//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="E:/mingw/mingw64/bin/mingw32-make.exe -f &quot;//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="E:/mingw/mingw64/bin/mingw32-make.exe -f &quot;//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="E:/mingw/mingw64/bin/mingw32-make.exe -f &quot;//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="E:/mingw/mingw64/bin/mingw32-make.exe -f &quot;//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="E:/mingw/mingw64/bin/mingw32-make.exe -f &quot;//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="E:/mingw/mingw64/bin/mingw32-make.exe -f &quot;//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/common/consistentHash.cpp">
+			<Option target="testConsistentHash"/>
+		</Unit>
+		<Unit filename="//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/common/consistentHash.h">
+			<Option target="testConsistentHash"/>
+		</Unit>
+		<Unit filename="//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/common/log.cpp">
+			<Option target="testlog"/>
+		</Unit>
+		<Unit filename="//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/common/log.h">
+			<Option target="testlog"/>
+		</Unit>
+		<Unit filename="//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/main.cpp">
+			<Option target="master"/>
+		</Unit>
+		<Unit filename="//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/src/nodeConHash.cpp">
+			<Option target="testConsistentHash"/>
+		</Unit>
+		<Unit filename="//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/src/nodeConHash.h">
+			<Option target="testConsistentHash"/>
+		</Unit>
+		<Unit filename="//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/test/test_consistentHash.cpp">
+			<Option target="testConsistentHash"/>
+		</Unit>
+		<Unit filename="//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/test/test_log.cpp">
+			<Option target="testlog"/>
+		</Unit>
+		<Unit filename="//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

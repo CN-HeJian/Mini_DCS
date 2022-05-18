@@ -1,14 +1,34 @@
-// Copyright 2022 icf
-// 
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-// 
-//     http://www.apache.org/licenses/LICENSE-2.0
-// 
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+#include "../common/log.h"
+#include <pthread.h>
+#include <iostream>
+#include <limits.h>
+using namespace std;
 
+void* producer_thread_proc(void* arg1)
+{
+    LogFile* arg = (LogFile*)arg1;
+    int index = 0;
+    while (true)
+    {
+        index++;
+        if (index == 5) break;
+        //std::cout <<"tid: "<<gettid()<<"index: "<<index << std::endl;
+        arg->LogWARNING("id=%d, gg=%d,hh=%d,ff=%s",index,12,10,"sdfa");
+        sleep(0.1);
+    }
+}
+
+int main()
+{
+    LogFile logfile;
+    logfile.OpenLogFile("../my.log");
+    pthread_t producer_thread_id[3];
+    for (int i=0; i<3; i++)
+        pthread_create(&producer_thread_id[i],NULL,producer_thread_proc,&logfile);
+    pthread_t log_consumer_thread_id;
+    pthread_create(&log_consumer_thread_id,NULL,LogFile::LogFileConsumer,&logfile);
+    for (int i=0; i<3; i++)
+        pthread_join(producer_thread_id[i],NULL);
+    pthread_join(log_consumer_thread_id,NULL);
+    return 0;
+}

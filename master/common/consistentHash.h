@@ -7,9 +7,7 @@ using namespace std;
 
 class ConsistentHash{
 public:
-    uint32_t hash(string k);
-private:
-    
+    uint32_t hash(string key);
 };
 
 

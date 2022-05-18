@@ -1,4 +1,4 @@
-#include "../common/consistentHash.h"
+#include "nodeConHash.h"
 
 #include <iostream>
 #include <vector>
@@ -13,6 +13,6 @@ public:
 
 private:
     vector<string> cacheServers;
-    ConsistentHash* conHash;
 
+    //nodeConHash* conHash;
 };

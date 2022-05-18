@@ -1,10 +1,23 @@
-cmake_minimum_required (VERSION 2.8)
-
+cmake_minimum_required (VERSION 3.8)
 project (demo)
 
-aux_source_directory(. SRC_LIST)
-add_compile_options(-std=c++11 -lpthread)
-add_executable(master ${SRC_LIST})
+set(CMAKE_CXX_STANDARD 11)
 
-find_package(Threads)
-target_link_libraries(master ${CMAKE_THREAD_LIBS_INIT})
+set(SRC_LIST
+        main.cpp
+        #./src/nodeConHash.cpp
+        #./src/manager.cpp
+        #./common/consistentHash.cpp
+        )
+        
+
+add_executable(master ${SRC_LIST})
+add_executable(testConsistentHash ./test/test_consistentHash.cpp ./src/nodeConHash.cpp ./common/consistentHash.cpp)
+add_executable(testlog ./test/test_log.cpp  ./common/log.cpp)
+
+
+
+TARGET_LINK_LIBRARIES( testlog pthread)
+
+#g++ test_consistentHash.cpp  ../src/nodeConHash.cpp ../common/consistentHash.cpp  -o conff
+#g++ test_log.cpp  ../common/log.cpp  -o log -pthread
