@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/icf/icf/CacheSystem/master/common/consistentHash.cpp
+consistentHash.h
+/home/icf/icf/CacheSystem/master/common/consistentHash.h
+
+/home/icf/icf/CacheSystem/master/common/consistentHash.h
+iostream
+-
+string
+-
+

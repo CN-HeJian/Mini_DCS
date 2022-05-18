@@ -1,0 +1,5 @@
+//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/CMakeFiles/master.dir
+//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/CMakeFiles/testConsistentHash.dir
+//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/CMakeFiles/testlog.dir
+//wsl$/Ubuntu-20.04/home/icf/icf/CacheSystem/master/cmake-build-debug/CMakeFiles/edit_cache.dir
