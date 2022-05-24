@@ -99,13 +99,15 @@ int main(){
         pthread_join(consumer_threads[i],NULL);
     }
 
-    delete product_threads;
-    delete consumer_threads;
+    // delete product_threads;
+    // delete consumer_threads;
     // while(1){
 
     // }
 
     pthread_exit(NULL);
+    delete product_threads;
+    delete consumer_threads;
     // thread th1(t1);
     // thread th2(t2);
     // th1.join(); //等待th1执行完

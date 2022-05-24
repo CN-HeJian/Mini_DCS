@@ -12,34 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "../common/threadPool.h"
-
-using namespace std;
-#include "time.h"
-#include "unistd.h"
+#include "netServer.h"
 
 
-void print(void* arg){
-    cout<<"print task>>>>>>>>>>>>>>>"<<*((int*)arg)<<endl;
-}
-
-int main(){
-    ThreadPool pool(3,6);
-
-
-    for(int i=0;i<5;i++){
-        sleep(1);
-        Task tk;
-        tk.function = print;
-        tk.arg = &i;
-        pool.addTask(tk);
-    }
-
-    //pthread_exit(NULL);
-    while(1)
-    {
-        /* code */
-    }
-    
-    return 0;
-}
