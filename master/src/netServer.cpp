@@ -68,7 +68,7 @@ void NetServer::start(){
             //关闭连接事件
             else if(events & (EPOLLRDHUP | EPOLLHUP | EPOLLERR)) {
                 assert(users_.count(fd) > 0);
-                //std::cout<<fd<<" handle closeConnect!"<<std::endl;
+                std::cout<<fd<<" handle closeConnect!"<<std::endl;
                 closeConnection(&users_[fd]);
             }
             //读事件
@@ -177,6 +177,7 @@ void NetServer::initEventMode(int trigMode){
     Connection::isET = (connectionEvent_ & EPOLLET);
 }
 
+//NetServer::handleListen调用
 void NetServer::addConnection(int fd,sockaddr_in addr){
     assert(fd>0);
     users_[fd].initConnection(fd,addr);
@@ -188,6 +189,7 @@ void NetServer::addConnection(int fd,sockaddr_in addr){
     setFdNonblock(fd);
 }
 
+//关闭连接
 void NetServer::closeConnection(Connection* client){
     assert(client);
     std::cout<<"NetServer::closeConnection..."<<std::endl;
@@ -252,7 +254,6 @@ void NetServer::onRead_(void* arg){
 
 //内部调用函数，表示正在写
 void NetServer::onWrite_(void* arg){
-    //
     Connection* client = (Connection*)arg; 
     assert(client);
     int ret = -1;

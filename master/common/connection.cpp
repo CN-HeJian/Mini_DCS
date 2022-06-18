@@ -34,13 +34,14 @@ void Connection::initConnection(int sockFd,const sockaddr_in & addr){
     fd_ = sockFd;
     readBuffer_.initPtr();
     writeBuffer_.initPtr();
-    isClose_ = true;
+    isClose_ = false;
 }
 
 //处理关闭连接的事件:但这儿就出现了bug、尽量不要在服务端关闭文件描述符!!!
 void Connection::closeConnect(){
     //TODO: 需要关闭映射的文件
     if(isClose_ == false){
+        std::cout<<"isclose:::::::"<<std::endl;
         isClose_ = true;
         userCount--;
         close(fd_);

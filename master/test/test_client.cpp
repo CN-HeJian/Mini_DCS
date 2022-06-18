@@ -51,7 +51,7 @@ int main(){
     while(count<1){
         sleep(2);
         std::cout<<"send buffer..."<<strlen(sendData)<<std::endl;
-        int len = send(sock,sendData,strlen(sendData),0);
+        //int len = send(sock,sendData,strlen(sendData),0);
         //std::cout<<"send length: "<<len<<std::endl;
         count++;
     }
@@ -63,7 +63,7 @@ int main(){
    
     //关闭套接字
     std::cout<<"close: "<<std::endl;
-    //close(sock);
+    close(sock);
     
     while(1){
 
