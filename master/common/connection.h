@@ -21,6 +21,10 @@
 #include <iostream>
 #include <assert.h>
 #include <sys/types.h>
+#include <sys/uio.h>
+#include <assert.h>
+
+#include "request.h"
 
 class Connection{
 public:
@@ -45,9 +49,9 @@ public:
         return iov_[1].iov_len+iov_[0].iov_len;
     }
 
-    // bool isKeepLive(){
-    //     //return false;
-    // }
+    bool isKeepLive(){
+        return request_.isKeepAlive();
+    }
 
     static bool isET;
 
@@ -65,6 +69,9 @@ private:
 
     Buffer readBuffer_; //读缓冲区
     Buffer writeBuffer_;//写缓冲区
+
+    Request request_;
+    //Response response_;
 };
 
 

@@ -13,4 +13,10 @@
 // limitations under the License.
 
 #include "../common/epoll.h"
+#include "../src/netServer.h"
 
+int main(){
+    NetServer  server(1316, 3, 10000, false, 1);            
+    server.start();
+    return 0;
+}

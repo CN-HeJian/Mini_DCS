@@ -14,6 +14,8 @@
 
 #include "timer.h"
 
+#include <iostream>
+
 void TimerManager::addTimer(int id,int timeout,const TimeoutCallBack& cb){
     assert(id>=0);
     size_t i;
@@ -50,6 +52,7 @@ void TimerManager::handle_expired_event(){
 }
 
 int TimerManager::getNextHandle(){
+    //std::cout<<"getNextHandle"<<std::endl;
     handle_expired_event();
     size_t res = -1;
     if(!heap_.empty()) {

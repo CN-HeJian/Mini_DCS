@@ -37,6 +37,7 @@ void Connection::initConnection(int sockFd,const sockaddr_in & addr){
     isClose_ = true;
 }
 
+//处理关闭连接的事件:但这儿就出现了bug、尽量不要在服务端关闭文件描述符!!!
 void Connection::closeConnect(){
     //TODO: 需要关闭映射的文件
     if(isClose_ == false){
@@ -62,6 +63,8 @@ int Connection::getPort() const{
     return addr_.sin_port;
 }
 
+//et 模式下循环读取缓冲区内容...
+//每个ET模式下的文件描述符都应该是阻塞的
 ssize_t Connection::readBuffer(int *saveErrno){
     ssize_t len = -1;
     do{
@@ -101,7 +104,8 @@ ssize_t Connection::writeBuffer(int *saveErrno){
 
 
 bool Connection::handleConnec(){
-    std::cout<<"handleConnec "<<std::endl;
+    std::cout<<"Connecion::handleConnec "<<std::endl;
+
     // request_.init();
     // if(readBuffer_.readableBytes() <= 0) {
     //     //std::cout<<"readBuffer is empty!"<<std::endl;
@@ -127,6 +131,8 @@ bool Connection::handleConnec(){
     //     iov_[1].iov_len = response_.fileLen();
     //     iovCnt_ = 2;
     // }
+
+
     return true;
 }
 

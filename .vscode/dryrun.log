@@ -1,0 +1,6 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/icf/icf/CacheSystem'
+make: Leaving directory '/home/icf/icf/CacheSystem'
+ 
+make: *** No targets specified and no makefile found.  Stop.
+

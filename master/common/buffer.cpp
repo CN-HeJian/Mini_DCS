@@ -108,10 +108,13 @@ void Buffer::append(const Buffer& buffer)
     append(buffer.curReadPtr(),buffer.readableBytes());
 }
 
+
+//从缓冲区读取数据
 ssize_t Buffer::readFd(int fd,int* Errno)
 {
     char buff[65535];//暂时的缓冲区
     struct iovec iov[2];
+
     const size_t writable=writeableBytes();
 
     iov[0].iov_base=BeginPtr_()+writePos_;
@@ -122,23 +125,30 @@ ssize_t Buffer::readFd(int fd,int* Errno)
     const ssize_t len=readv(fd,iov,2);
     if(len<0)
     {
-        //std::cout<<"从fd读取数据失败！"<<std::endl;
+        //std::cout<<"从fd读取数据失败!"<<std::endl;
         *Errno=errno;
     }
     else if(static_cast<size_t>(len)<=writable)
     {
+        //std::cout<<"add data"<<std::endl;
         writePos_+=len;
     }
     else{
+        //std::cout<<"double space"<<std::endl;
         writePos_=buffer_.size();
         append(buff,len-writable);
     }
+
+    //printContent();
+
     return len;
 }
 
 ssize_t Buffer::writeFd(int fd,int* Errno)
 {
+    //可以读取的字节数
     size_t readSize=readableBytes();
+    //读取到的长度
     ssize_t len=write(fd,curReadPtr(),readSize);
     if(len<0)
     {
@@ -146,13 +156,16 @@ ssize_t Buffer::writeFd(int fd,int* Errno)
         *Errno=errno;
         return len;
     }
+    //读取的长度加len
     readPos_+=len;
     return len;
 }
 
 std::string Buffer::AlltoStr()
 {
+    //从读的位置开始读，读的长度为writePos-ReadPos
     std::string str(curReadPtr(),readableBytes());
+    //重新初始化
     initPtr();
     return str;
 }
@@ -164,5 +177,6 @@ char* Buffer::BeginPtr_()
 
 const char* Buffer::BeginPtr_() const
 {
+    //起始元素取的地址
     return &*buffer_.begin();
 }

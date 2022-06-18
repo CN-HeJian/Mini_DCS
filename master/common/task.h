@@ -16,7 +16,16 @@
 #define CACHESYSTEM_TASK_H
 
 
-using callback = void(*)(void*);
+//using callback = void(*)(void*);
+
+
+
+#include <functional>
+#include <iostream>
+#include <memory>
+
+typedef std::function<void(void*)> callback;
+
 
 struct Task{
     Task(){
