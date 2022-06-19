@@ -1,0 +1,73 @@
+// Copyright 2022 icf
+// 
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+// 
+//     http://www.apache.org/licenses/LICENSE-2.0
+// 
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+
+技术点:
+1)  一致性哈希
+2)  套接字
+3)  状态机回复
+4)  日志模块
+
+功能划分:
+1)  主动扩容
+2)  主动缩容
+3)  被动缩容
+4)  Master容灾
+
+公有模块
+1) consistentHash
+    1、哈希函数
+    2、增加虚拟节点，防止雪崩效应
+    3、增加一个机器
+    4、删除一个机器
+    5、依据key得到在哪个机器对应的ipPort
+2) epoll
+    1、读取数据
+    2、发送数据
+3) safeQueue
+    1、https://www.freeaihub.com/post/93796.html    
+    1、环形数组
+    2、线程函数
+4) json
+    1、直接传递json类型的数据包
+5) threadPool
+    1、addTask 即可!!!
+6) log
+    1、异步读写!
+
+Master与哪些机器进行交互？
+1) cacheServer:
+
+2) Master:master容灾
+    
+3) client:Master
+
+
+
+异常：
+--------------------------------------------------
+Q：
+    1) test_client.cpp 中 多次send 不能多次捕获读事件
+    2) 调用了send不能捕获close()
+
+A:上面两个问题都需要通过重置标志位来解决
+--------------------------------------------------
+Q:
+    3) buffer_->readv(fd,iov,2)会一次读完所有的数据?
+    
+A：
+    不会，会将readv中的缓冲区都读满，如果缓冲区长度大于iov的长度的话，这个时候就需要扩容了！
+--------------------------------------------------
+
