@@ -109,10 +109,11 @@ void Buffer::append(const Buffer& buffer)
 }
 
 
+
 //从缓冲区读取数据
 ssize_t Buffer::readFd(int fd,int* Errno)
 {
-    char buff[65535];//暂时的缓冲区
+    char buff[66636];//暂时的缓冲区
     struct iovec iov[2];
 
     const size_t writable=writeableBytes();

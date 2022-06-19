@@ -25,6 +25,7 @@
 #include <assert.h>
 
 #include "request.h"
+#include "response.h"
 
 class Connection{
 public:
@@ -49,9 +50,9 @@ public:
         return iov_[1].iov_len+iov_[0].iov_len;
     }
 
-    bool isKeepLive(){
-        return request_.isKeepAlive();
-    }
+    // bool isKeepLive(){
+    //     return request_.isKeepAlive();
+    // }
 
     static bool isET;
 
@@ -60,18 +61,24 @@ public:
     static std::atomic<int> userCount;
 
 private: 
-    int fd_;//连接对应的描述符
+    //连接对应的描述符
+    int fd_;
+    //存储连接信息的套接字
     struct sockaddr_in addr_;
+    //链接是否关闭
     bool isClose_;
 
     int iovCnt_;
     struct iovec iov_[2];
+    
+    //读缓冲区
+    Buffer readBuffer_; 
+    //写缓冲区
+    Buffer writeBuffer_;
 
-    Buffer readBuffer_; //读缓冲区
-    Buffer writeBuffer_;//写缓冲区
 
     Request request_;
-    //Response response_;
+    Response response_;
 };
 
 

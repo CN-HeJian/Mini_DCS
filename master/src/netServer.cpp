@@ -52,7 +52,7 @@ void NetServer::start(){
 
         //阻塞的最小毫秒
         int eventCnt=epoller_->wait(timeMS);
-        std::cout<<"----------------eventCnt: "<<eventCnt<<std::endl;
+        //std::cout<<"----------------eventCnt:----------------------------------------- "<<eventCnt<<std::endl;
 
         for(int i=0;i<eventCnt;++i)
         {
@@ -63,29 +63,29 @@ void NetServer::start(){
             //监听事件
             if(fd==listenFd_){
                 handleListen();
-                //std::cout<<fd<<" is listening!"<<std::endl;
+                std::cout<<fd<<"============================is listening!============================"<<std::endl;
             }
             //关闭连接事件
             else if(events & (EPOLLRDHUP | EPOLLHUP | EPOLLERR)) {
                 assert(users_.count(fd) > 0);
-                std::cout<<fd<<" handle closeConnect!"<<std::endl;
+                std::cout<<fd<<"============================handle closeConnect!============================"<<std::endl;
                 closeConnection(&users_[fd]);
             }
             //读事件
             else if(events & EPOLLIN) {
                 assert(users_.count(fd) > 0);
-                //std::cout<<fd<<" handle read"<<std::endl;
+                std::cout<<fd<<"============================handle read============================-"<<std::endl;
                 handleRead(&users_[fd]);
             }
             //写事件
             else if(events & EPOLLOUT) {
                 assert(users_.count(fd) > 0);
-                //std::cout<<fd<<" handle write"<<std::endl;
+                std::cout<<fd<<"============================handle write============================"<<std::endl;
                 handleWrite(&users_[fd]);
             } 
             //异常事件
             else {
-                std::cout<<"Unexpected event"<<std::endl;
+                std::cout<<"============================Unexpected event============================"<<std::endl;
             }
         }
     }
@@ -151,6 +151,7 @@ bool NetServer::initSocket_(){
     return true;
 }
 
+//trigMode = 3
 void NetServer::initEventMode(int trigMode){
     listenEvent_ = EPOLLRDHUP;
     connectionEvent_ = EPOLLONESHOT | EPOLLRDHUP;
@@ -254,33 +255,32 @@ void NetServer::onRead_(void* arg){
 
 //内部调用函数，表示正在写
 void NetServer::onWrite_(void* arg){
-    Connection* client = (Connection*)arg; 
-    assert(client);
-    int ret = -1;
-    int writeErrno = 0;
-    ret = client->writeBuffer(&writeErrno);
-    if(client->writeBytes() == 0) {
-        // /* 传输完成 */
-        // if(client->isKeepAlive()) {
-        //     onProcess_(client);
-        //     return;
-        // }
-    }
-    else if(ret < 0) {
-        if(writeErrno == EAGAIN) {
-            /* 继续传输 */
-            epoller_->modFd(client->getFd(), connectionEvent_ | EPOLLOUT);
-            return;
-        }
-    }
-    closeConnection(client);
+    // Connection* client = (Connection*)arg; 
+    // assert(client);
+    // int ret = -1;
+    // int writeErrno = 0;
+    // ret = client->writeBuffer(&writeErrno);
+    // if(client->writeBytes() == 0) {
+    //     // /* 传输完成 */
+    //     // if(client->isKeepAlive()) {
+    //     //     onProcess_(client);
+    //     //     return;
+    //     // }
+    // }
+    // else if(ret < 0) {
+    //     if(writeErrno == EAGAIN) {
+    //         /* 继续传输 */
+    //         epoller_->modFd(client->getFd(), connectionEvent_ | EPOLLOUT);
+    //         return;
+    //     }
+    // }
+    // closeConnection(client);
 }
 
 void NetServer::onProcess_(Connection* client){
-    //emm这个是干什么的？
     if(client->handleConnec()) {
         //socket缓冲区可写
-        //epoller_->modFd(client->getFd(), connectionEvent_ | EPOLLOUT);
+        epoller_->modFd(client->getFd(), connectionEvent_ | EPOLLOUT);
     } 
     else {
         //socket缓冲区可读

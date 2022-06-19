@@ -41,7 +41,7 @@ void Connection::initConnection(int sockFd,const sockaddr_in & addr){
 void Connection::closeConnect(){
     //TODO: 需要关闭映射的文件
     if(isClose_ == false){
-        std::cout<<"isclose:::::::"<<std::endl;
+        //std::cout<<"isclose:::::::"<<std::endl;
         isClose_ = true;
         userCount--;
         close(fd_);
@@ -103,28 +103,37 @@ ssize_t Connection::writeBuffer(int *saveErrno){
     return len;
 }
 
+/*
+1) 初始化responce
+2) 根据buffer组装报文并传入writeBuffer
+*/
 
 bool Connection::handleConnec(){
     std::cout<<"Connecion::handleConnec "<<std::endl;
 
-    // request_.init();
-    // if(readBuffer_.readableBytes() <= 0) {
-    //     //std::cout<<"readBuffer is empty!"<<std::endl;
-    //     return false;
-    // }
-    // else if(request_.parse(readBuffer_)) {
-    //     response_.init(srcDir, request_.path(), request_.isKeepAlive(), 200);
-    // }else {
-    //     std::cout<<"400!"<<std::endl;
-    //     //readBuffer_.printContent();
-    //     response_.init(srcDir, request_.path(), false, 400);
-    // }
+    request_.init();
+    if(readBuffer_.readableBytes() <= 0) {
+        //std::cout<<"readBuffer is empty!"<<std::endl;
+        return false;
+    }
 
-    // response_.makeResponse(writeBuffer_);
-    // /* 响应头 */
-    // iov_[0].iov_base = const_cast<char*>(writeBuffer_.curReadPtr());
-    // iov_[0].iov_len = writeBuffer_.readableBytes();
-    // iovCnt_ = 1;
+    else if(request_.parse(readBuffer_)) {
+        //初始化responce
+        response_.init();
+    }else{
+        //记录未能解析的buffer_
+        //std::cout<<"400!"<<std::endl;
+        //readBuffer_.printContent();
+        //response_.init(srcDir, request_.path(), false, 400);
+    }
+
+    response_.makeResponse(writeBuffer_);
+
+
+    // /**/
+     iov_[0].iov_base = const_cast<char*>(writeBuffer_.curReadPtr());
+     iov_[0].iov_len = writeBuffer_.readableBytes();
+     iovCnt_ = 1;
 
     // /* 文件 */
     // if(response_.fileLen() > 0  && response_.file()) {
@@ -133,7 +142,5 @@ bool Connection::handleConnec(){
     //     iovCnt_ = 2;
     // }
 
-
     return true;
 }
-

@@ -23,29 +23,35 @@
 #include <regex>
 
 #include "buffer.h"
+#include "../common/json.h"
+using json = nlohmann::json;
 
 //using namespace std;
 
+struct req_key{
+    std::string value;
+};
+
 class Request{    
 public:
-    //
-    enum PARSE_STATE{
-        REQUEST_LINE,
-        HEADERS,
-        BODY,
-        FINISH,
-    };
+    // //
+    // enum PARSE_STATE{
+    //     REQUEST_LINE,
+    //     HEADERS,
+    //     BODY,
+    //     FINISH,
+    // };
 
-    enum HTTP_CODE {
-        NO_REQUEST = 0,
-        GET_REQUEST,
-        BAD_REQUEST,
-        NO_RESOURCE,
-        FORBIDDENT_REQUEST,
-        FILE_REQUEST,
-        INTERNAL_ERROR,
-        CLOSED_CONNECTION,
-    };
+    // enum HTTP_CODE {
+    //     // NO_REQUEST = 0,
+    //     // GET_REQUEST,
+    //     // BAD_REQUEST,
+    //     // NO_RESOURCE,
+    //     // FORBIDDENT_REQUEST,
+    //     // FILE_REQUEST,
+    //     // INTERNAL_ERROR,
+    //     // CLOSED_CONNECTION,
+    // };
 
     Request();
     ~Request()=default;
@@ -53,14 +59,14 @@ public:
     void init();
     bool parse(Buffer& buff);
 
-    std::string path()const;
-    std::string &path();
-    std::string method();
-    std::string version();
-    std::string getPost(const std::string& key) const;
-    std::string getPost(const char* key) const;
+    // std::string path()const;
+    // std::string &path();
+    // std::string method();
+    // std::string version();
+    // std::string getPost(const std::string& key) const;
+    // std::string getPost(const char* key) const;
 
-    bool isKeepAlive() const;
+    //bool isKeepAlive() const;
 
 private:
 
@@ -71,34 +77,34 @@ private:
     // request header 
     /*  请求头部  */
 
-    bool parseRequestLine_(const std::string& line);
-    void parseRequestHeader_(const std::string& line);
-    void parseDataBody_(const std::string& line);
+    //bool parseRequestLine_(const std::string& line);
+    //void parseRequestHeader_(const std::string& line);
+    //void parseDataBody_(const std::string& line);
 
-    void parsePath_();
-    void parsePost_();
+    //void parsePath_();
+    //void parsePost_();
 
-    static int convertHex(char ch);
+    //static int convertHex(char ch);
 
-    std::string method() const;
-    std::string version() const;
+    //std::string method() const;
+    //std::string version() const;
     
     //当前报文解析进度curState
-    PARSE_STATE state_;
+    //PARSE_STATE state_;
     //方法:get/post
-    std::string method_;
+    //std::string method_;
     //所需资源的路径!!!
-    std::string path_;
+    //std::string path_;
     //版本号Version_number
-    std::string version_;
+    //std::string version_;
     //内容Content
-    std::string body_;
+    //std::string body_;
 
-    std::unordered_map<std::string,std::string> header_;
+    //std::unordered_map<std::string,std::string> header_;
     
-    std::unordered_map<std::string,std::string> post_;
+    //std::unordered_map<std::string,std::string> post_;
 
-    static const std::unordered_set<std::string> DEFAULT_HTML;
+    //static const std::unordered_set<std::string> DEFAULT_HTML;
 };
 
 #endif // !REQUEST_H

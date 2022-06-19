@@ -5,9 +5,24 @@
 #include <arpa/inet.h>
 #include <sys/socket.h>
 #include <iostream>
-
+#include <string>
 #include "../common/json.h"
 using json = nlohmann::json;
+
+
+struct req_key{
+    std::string value;
+};
+
+// person -> json
+void to_json(json& j, const req_key& p) {
+    j = json{{"value", p.value}};
+}
+
+// json -> person
+void from_json(const json& j, req_key& p) {
+    j.at("value").get_to(p.value);
+}
 
 
 int main(){
@@ -32,26 +47,38 @@ int main(){
         std::cout<<"init linger erroe!"<<std::endl;
     }
     
-    json j;
+    req_key kv={"3.14"};
+
+    json j=kv;
+
+    auto p = j.get<req_key>();
  
     //添加一个存储为double的数字
-    j["pi"] = 3.1415676564;
+    // std::string ss="";
+    // for(int i=0;i<500;i++){
+    //     ss += std::to_string(i);
+    // }
+
+    //std::cout<<ss<<std::endl;
+
+
+    //j["pi"] = 3.144;
 
     std::string s = j.dump();
     const char *sendData;
     sendData = s.c_str();
     
     char buffer[4000];
-    for(int i=0;i<10;i++){
-        buffer[i] = 'a'+i;
-    }
+    // for(int i=0;i<10;i++){
+    //     buffer[i] = 'a'+i;
+    // }
     buffer[10] = '\0';
 
     int count = 0;
     while(count<1){
         sleep(2);
         std::cout<<"send buffer..."<<strlen(sendData)<<std::endl;
-        //int len = send(sock,sendData,strlen(sendData),0);
+        int len = send(sock,sendData,strlen(sendData),0);
         //std::cout<<"send length: "<<len<<std::endl;
         count++;
     }
