@@ -20,36 +20,63 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <string>
-#include <regex>
+#include <arpa/inet.h>
 
 #include "buffer.h"
 #include "../common/json.h"
+
+
+class Manager;
 using json = nlohmann::json;
 
+/*
+    machineType 
+        0：cacheServer
+        1：client
+        2：master
+*/
+
+/*
+    req_type
+        0： keepAlive
+        1：
+*/
+
 struct req{
+    int machineType;
     int req_type;
 };
 
 class Request{    
 public:
-     enum REQ_TYPE{
+    enum MACHINE_TYPE{
         CACHE_SERVER,
         CLIENT,
         MASTER,
-     };
+    };
+
+    enum REQ_TYPE{
+        KEEP_ALIVE,
+        //CLIENT,
+        //MASTER,
+    };
 
     Request();
     ~Request()=default;
 
     void init();
-    bool parse(Buffer& buff);
+    bool parse(Buffer& buff,const struct sockaddr_in &_addr);
 
-    void request_cacheServer_();
-    void request_client_();
-    void request_master_();
+    bool request_cacheServer_();
+
+    void cacheServer_KeepAlive();
+
+    bool request_client_();
+    bool request_master_();
 
 private:
     req req_data_;
+    struct sockaddr_in addr_;
 };
 
 // person -> json
@@ -61,6 +88,5 @@ static void to_json(json& j, const req& p) {
 static void from_json(const json& j, req& p) {
     j.at("req_type").get_to(p.req_type);
 }
-
 
 #endif // !REQUEST_H

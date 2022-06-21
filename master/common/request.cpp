@@ -13,8 +13,8 @@
 // limitations under the License.
 
 #include "request.h"
-#include "../common/json.h"
-using json = nlohmann::json;
+#include "../src/manager.h"
+
 
 Request::Request(){
     init();
@@ -25,15 +25,16 @@ void Request::init(){
 }
 
 //需要判断能否解析成功
-bool Request::parse(Buffer& buff){
+bool Request::parse(Buffer& buff,const struct sockaddr_in &_addr){
     std::cout<<"Request::parse: "<<std::endl;
     buff.printContent();
 
     std::string s = buff.AlltoStr();
     json j = json::parse(s);
     req_data_ = j.get<req>();
+    addr_ = _addr;
 
-    switch(req_data_.req_type){
+    switch(req_data_.machineType){
         case CACHE_SERVER:
             request_cacheServer_();
             break;
@@ -51,16 +52,33 @@ bool Request::parse(Buffer& buff){
 }
 
 //处理缓存服务器请求
-void Request::request_cacheServer_(){
+bool Request::request_cacheServer_(){
     std::cout<<"Request::request_cacheServer_: "<<std::endl;
+    switch(req_data_.req_type){
+        case KEEP_ALIVE:
+            cacheServer_KeepAlive();
+            break;
+        default:
+            return false;
+    }
+    return true;
 }
 
+//缓存服务器心跳包
+void Request::cacheServer_KeepAlive(){
+    //获取当前的ip port即可!!!
+    //managet::get
+    Manager::GetInstance()->cacheServerKeepAlive(addr_);
+}
+
+
+
 //处理客户端请求
-void Request::request_client_(){
+bool Request::request_client_(){
     std::cout<<"Request::request_client_: "<<std::endl;
 }
 
 //从masster
-void Request::request_master_(){
+bool Request::request_master_(){
     std::cout<<"Request::request_client_: "<<std::endl;
 }

@@ -117,7 +117,7 @@ bool Connection::handleConnec(){
         return false;
     }
 
-    else if(request_.parse(readBuffer_)) {
+    else if(request_.parse(readBuffer_,addr_)) {
         //初始化responce
         response_.init();
     }else{
