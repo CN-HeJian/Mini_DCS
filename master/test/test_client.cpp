@@ -11,17 +11,17 @@ using json = nlohmann::json;
 
 
 struct req_key{
-    std::string value;
+    int req_type;
 };
 
 // person -> json
 void to_json(json& j, const req_key& p) {
-    j = json{{"value", p.value}};
+    j = json{{"req_type", p.req_type}};
 }
 
 // json -> person
 void from_json(const json& j, req_key& p) {
-    j.at("value").get_to(p.value);
+    j.at("req_type").get_to(p.req_type);
 }
 
 
@@ -47,7 +47,7 @@ int main(){
         std::cout<<"init linger erroe!"<<std::endl;
     }
     
-    req_key kv={"3.14"};
+    req_key kv={0};
 
     json j=kv;
 

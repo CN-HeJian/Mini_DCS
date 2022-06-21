@@ -26,32 +26,17 @@
 #include "../common/json.h"
 using json = nlohmann::json;
 
-//using namespace std;
-
-struct req_key{
-    std::string value;
+struct req{
+    int req_type;
 };
 
 class Request{    
 public:
-    // //
-    // enum PARSE_STATE{
-    //     REQUEST_LINE,
-    //     HEADERS,
-    //     BODY,
-    //     FINISH,
-    // };
-
-    // enum HTTP_CODE {
-    //     // NO_REQUEST = 0,
-    //     // GET_REQUEST,
-    //     // BAD_REQUEST,
-    //     // NO_RESOURCE,
-    //     // FORBIDDENT_REQUEST,
-    //     // FILE_REQUEST,
-    //     // INTERNAL_ERROR,
-    //     // CLOSED_CONNECTION,
-    // };
+     enum REQ_TYPE{
+        CACHE_SERVER,
+        CLIENT,
+        MASTER,
+     };
 
     Request();
     ~Request()=default;
@@ -59,52 +44,23 @@ public:
     void init();
     bool parse(Buffer& buff);
 
-    // std::string path()const;
-    // std::string &path();
-    // std::string method();
-    // std::string version();
-    // std::string getPost(const std::string& key) const;
-    // std::string getPost(const char* key) const;
-
-    //bool isKeepAlive() const;
+    void request_cacheServer_();
+    void request_client_();
+    void request_master_();
 
 private:
-
-    // request line
-    /*  请求方法  URL  协议版本  换行符  */
-    /*  GET  /mix/76.html?name=kelvin&password=123456 HTTP/1.1  */
-
-    // request header 
-    /*  请求头部  */
-
-    //bool parseRequestLine_(const std::string& line);
-    //void parseRequestHeader_(const std::string& line);
-    //void parseDataBody_(const std::string& line);
-
-    //void parsePath_();
-    //void parsePost_();
-
-    //static int convertHex(char ch);
-
-    //std::string method() const;
-    //std::string version() const;
-    
-    //当前报文解析进度curState
-    //PARSE_STATE state_;
-    //方法:get/post
-    //std::string method_;
-    //所需资源的路径!!!
-    //std::string path_;
-    //版本号Version_number
-    //std::string version_;
-    //内容Content
-    //std::string body_;
-
-    //std::unordered_map<std::string,std::string> header_;
-    
-    //std::unordered_map<std::string,std::string> post_;
-
-    //static const std::unordered_set<std::string> DEFAULT_HTML;
+    req req_data_;
 };
+
+// person -> json
+static void to_json(json& j, const req& p) {
+    j = json{{"req_type", p.req_type}};
+}
+
+// json -> person
+static void from_json(const json& j, req& p) {
+    j.at("req_type").get_to(p.req_type);
+}
+
 
 #endif // !REQUEST_H

@@ -122,7 +122,7 @@ bool Connection::handleConnec(){
         response_.init();
     }else{
         //记录未能解析的buffer_
-        //std::cout<<"400!"<<std::endl;
+        std::cout<<"Connection::handleConnec 400!!!"<<std::endl;
         //readBuffer_.printContent();
         //response_.init(srcDir, request_.path(), false, 400);
     }
