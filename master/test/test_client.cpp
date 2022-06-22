@@ -10,17 +10,23 @@
 using json = nlohmann::json;
 
 
-struct req_key{
+// struct req_key{
+//     int req_type;
+// };
+
+struct req{
+    int machineType;
     int req_type;
 };
 
 // person -> json
-void to_json(json& j, const req_key& p) {
-    j = json{{"req_type", p.req_type}};
+void to_json(json& j, const req& p) {
+    j = json{{"machineType", p.machineType},{"req_type",p.req_type}};
 }
 
 // json -> person
-void from_json(const json& j, req_key& p) {
+void from_json(const json& j, req& p) {
+    j.at("machineType").get_to(p.machineType);
     j.at("req_type").get_to(p.req_type);
 }
 
@@ -47,11 +53,11 @@ int main(){
         std::cout<<"init linger erroe!"<<std::endl;
     }
     
-    req_key kv={0};
+    req kv={0,0};
 
     json j=kv;
 
-    auto p = j.get<req_key>();
+    auto p = j.get<req>();
  
     //添加一个存储为double的数字
     // std::string ss="";
@@ -68,11 +74,11 @@ int main(){
     const char *sendData;
     sendData = s.c_str();
     
-    char buffer[4000];
+    //char buffer[4000];
     // for(int i=0;i<10;i++){
     //     buffer[i] = 'a'+i;
     // }
-    buffer[10] = '\0';
+   // buffer[10] = '\0';
 
     int count = 0;
     while(count<1){
@@ -90,10 +96,33 @@ int main(){
    
     //关闭套接字
     std::cout<<"close: "<<std::endl;
-    close(sock);
+    //close(sock);
     
-    while(1){
 
+    
+    //while(1){
+
+    //}
+    char buffer[1024];
+
+    while (1)
+    {
+        int iret;
+        memset(buffer,0,sizeof(buffer));
+        iret=recv(sock,buffer,sizeof(buffer),0);
+        if (iret<=0) 
+        {
+        printf("iret=%d\n",iret); //break;  
+        }
+        printf("receive :%s\n",buffer);
+    
+        // strcpy(buffer,"ok");//reply cilent with "ok"
+        // if ( (iret=send(sock,buffer,strlen(buffer),0))<=0) 
+        // { 
+        //     perror("send"); 
+        //     break; 
+        // }
+        // printf("send :%s\n",buffer);
     }
 
     //sleep(1);
