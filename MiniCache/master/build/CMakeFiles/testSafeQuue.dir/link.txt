@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/testSafeQuue.dir/test/test_safeQueue.cpp.o  -o testSafeQuue 
