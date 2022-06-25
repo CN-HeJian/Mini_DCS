@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/testSafeQueue.dir/test/test_safeQueue.cpp.o  -o testSafeQueue  -lpthread 
