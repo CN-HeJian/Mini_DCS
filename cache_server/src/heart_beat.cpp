@@ -101,3 +101,63 @@ void HeartBeat::heartBeatSend(){
 void HeartBeat::HeartStop(){
     pthread_join(m_thread,0);
 }
+
+// bool HeartBeat::initSocket_(){
+//     int ret;
+//     // struct sockaddr_in addr;
+//     // if(port_>65536 || port_<1024){
+//     //     std::cout<<"port number error!"<<std::endl;
+//     //     return false;
+//     // }
+//     // addr.sin_family = AF_INET;
+//     // addr.sin_addr.s_addr = htonl(INADDR_ANY);
+//     // addr.sin_port = htons(port_);
+//     // struct linger optLinger  = {0};
+//     // if(openLinger_){
+//     //     optLinger.l_onoff = 1;
+//     //     optLinger.l_linger = 1;
+//     // }
+
+//     masterfd_ = socket(AF_INET,SOCK_STREAM,0);
+//     if(masterfd_<0){
+//         std::cout<<"create socket error!"<<std::endl;
+//         return false;
+//     }
+
+//     ret = setsockopt(masterfd_,SOL_SOCKET,SO_LINGER,&optLinger,sizeof(optLinger));
+//     if(ret<0){
+//         close(masterfd_);
+//         std::cout<<"init linger erroe!"<<std::endl;
+//     }
+
+//     int optVal = 1;
+//     ret = setsockopt(masterfd_,SOL_SOCKET,SO_REUSEADDR,(const void*)&optVal,sizeof(int));
+//     if(ret == -1) {
+//         //std::cout<<"set socket setsockopt error !"<<std::endl;
+//         close(masterfd_);
+//         return false;
+//     }
+
+//     ret = bind(masterfd_, (struct sockaddr *)&serv_addr, sizeof(addr));
+//     if(ret < 0) {
+//         //std::cout<<"Bind Port"<<port_<<" error!"<<std::endl;
+//         close(masterfd_);
+//         return false;
+//     }
+
+//     ret = listen(masterfd_, 6);
+//     if(ret < 0) {
+//         //printf("Listen port:%d error!\n", port_);
+//         close(masterfd_);
+//         return false;
+//     }
+//     ret = epoller_->addFd(masterfd_,  listenEvent_ | EPOLLIN);
+//     if(ret == 0) {
+//         //printf("Add listen error!\n");
+//         close(masterfd_);
+//         return false;
+//     }
+//     setFdNonblock(masterfd_);
+//     //printf("Server port:%d\n", port_);
+//     return true;
+// }

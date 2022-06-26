@@ -32,6 +32,7 @@ public:
     int connectTask(ipport_pair oneip,int &cfd);
     void heartBeatSend();
     void HeartStop();
+    void initSocket_();
     //master的连接描述符
     int masterfd_=-1;
     //一直重连即可!!!
