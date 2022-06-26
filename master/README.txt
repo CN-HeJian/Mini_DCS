@@ -131,5 +131,6 @@ Q: CacheServer 客户端关闭没有把iplist更新!!!
 //...关闭连接需要更新iplist//---这儿称为主动掉线？？
 不对，掉线是通过心跳包来检测的!!!
 
-
+Q: epoll_wait(timeOut)有什么作用？
+    
 

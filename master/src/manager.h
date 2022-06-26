@@ -29,8 +29,12 @@ public:
     //超时未收到心跳包,则认为需要更新
     void someCacheServerLost(struct sockaddr_in&_addr);
     //主动关闭服务器
-    void shutDownOneMachine(struct sockaddr_in&addr);
-    
+    void shutDownOneMachine(struct sockaddr_in& _addr);
+    //依据addr_在已经建立的连接中找到一个fd
+    int findFdAcrAddr(struct sockaddr_in & _addr);
+
+
+
 
 private:
     Manager(){};

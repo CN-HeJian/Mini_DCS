@@ -99,8 +99,8 @@ void HeartBeat::heartBeatSend(){
         if(ret>0){
             std::cout<<"sendSuccess"<<std::endl;
         }
-        sleep(15);
-        //usleep(10000000);
+        //sleep(15);
+        usleep(1500000);
     }
 }
 
