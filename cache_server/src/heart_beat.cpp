@@ -3,6 +3,7 @@
 #include <fcntl.h>       // fcntl()
 #include <pthread.h>
 
+//ms定时器
 void sleep(int n) {
   struct timeval delay;
   delay.tv_sec = 0;
@@ -10,7 +11,7 @@ void sleep(int n) {
   select(0, NULL, NULL, NULL, &delay);
 }
 
-//开启一个线程单独发送心跳包!!!
+//线程执行函数
 void* start(void* arg){
     HeartBeat* ht = (HeartBeat*)arg;
     //连接
@@ -19,6 +20,7 @@ void* start(void* arg){
     ht->heartBeatSend();
 }
 
+//开启线程
 HeartBeat::HeartBeat(){
     pthread_create(&m_thread,0,start,this);
 }
@@ -57,58 +59,42 @@ int HeartBeat::connectTask(ipport_pair oneip,int &cfd){
                 break;
             }
             tryCount++;
+            if(tryCount>3){
+                //std::cout<<"connect master failed"<<std::endl;
+                break;
+            }
         }while(tryCount<=3);
-        
-        if(tryCount>3){
-            std::cout<<"connect master failed"<<std::endl;
-        }
     }
-    
+
     return n;
 }
 
-
-
 //发送心跳包
 void HeartBeat::heartBeatSend(){
-    std::cout<<"heartSend..."<<std::endl;
-    //发送心跳包
     for(;;){
-        std::cout<<"heartBeatSend()"<<std::endl;
         json js;
         js["machineType"] = CACHE_SERVER;
         js["req_type"] = KEEP_ALIVE;
         js["data"] = json::object();
         string msg = js.dump();
-        
+
+        int tryCount  = 0;
+
         int ret = WriteData(masterfd_,js);
         if(ret<0){
-            int tryCount = 0;
-            do{
-                ret = WriteData(masterfd_,js);
-                tryCount++;
-                if(ret>=0){
-                    break;
-                }
-            }while(tryCount<=3);
+                //std::cout<<"send failed"<<std::endl;
+        }
 
-            if(tryCount>3){
-                //注意在这儿会有秒级的等待!!!,这儿是有问题的
-                int n = connectTask(get_ipport(master_ipport),masterfd_);
-                if(n>0){
-                    ret = WriteData(masterfd_,js);
-                    if(ret<0){
-                        std::cout<<"sendFailed"<<std::endl;
-                    }
-                }
+        if(ret<0){
+            std::cout<<"start Try reconnect"<<std::endl;
+            int n = connectTask(get_ipport(master_ipport),masterfd_);
+            ret = WriteData(masterfd_,js);
+            if(ret<0){
+                //std::cout<<"try send failed"<<std::endl;
             }
         }
-        if(ret>0){
-            std::cout<<"sendSuccess"<<std::endl;
-        }
-        //sleep(15);
 
-        sleep(2500);
+        sleep(50);
     }
 }
 

@@ -64,6 +64,13 @@ enum CLIENT_REQTYPE{
     DISTRIBUTION_RESPONSE,
 };
 
+enum CACHESERVEVR_RESPONSE{
+    ADD_CACHE_SERVER,
+    SHUTDOWN_CACHE,
+    REFLESH_IP,
+};
+
+
 class Request{    
 public:
 

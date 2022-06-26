@@ -74,7 +74,7 @@ void NetServer::start(){
             //读事件
             else if(events & EPOLLIN) {
                 assert(users_.count(fd) > 0);
-                std::cout<<fd<<"============================handle read============================-"<<std::endl;
+                //std::cout<<fd<<"============================handle read============================-"<<std::endl;
                 handleRead(&users_[fd]);
             }
             //写事件

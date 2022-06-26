@@ -4,7 +4,9 @@
 
 #include "nodeConHash.h"
 
-
+NodeConHash::NodeConHash(){
+    
+}
 
 //添加一个物理机
 void NodeConHash::addPhysicalMachine(string ip_port){
@@ -39,14 +41,27 @@ void NodeConHash::deletePhysicalMachine(string ip_port){
 string NodeConHash::findPhysicalAccordKey(string key){
     // //find
     uint32_t ret_Hash = conHash.hash(key);
-    // //找到第一个大于的节点，如果没有找到，那就是第一个
-    //cout<<"ret_Hash: "<<ret_Hash<<endl;
     auto it = mp_itoIpPort.lower_bound(ret_Hash);
     
     if(it==mp_itoIpPort.end()){
-        //cout<<"it"<<endl;
         return (*mp_itoIpPort.begin()).second;
     }
 
     return (*it).second;
+}
+
+//刷新对应的ipList
+void NodeConHash::RefreshIpList(vector<string> allipls){
+    allPhysicalMachine.clear();
+    mp_itoIpPort.clear();
+
+    int n = allipls.size();
+    for(int i=0;i<n;i++){
+        addPhysicalMachine(allipls[i]);
+    }
+}
+
+//根据key获取对应的缓存服务器
+string NodeConHash::GetServerIndex(string key){
+    return findPhysicalAccordKey(key);
 }

@@ -45,6 +45,7 @@ void Connection::closeConnect(){
         isClose_ = true;
         userCount--;
         close(fd_);
+        
     }
 }
 
@@ -109,7 +110,7 @@ ssize_t Connection::writeBuffer(int *saveErrno){
 */
 
 bool Connection::handleConnec(){
-    std::cout<<"Connecion::handleConnec "<<std::endl;
+    //std::cout<<"Connecion::handleConnec "<<std::endl;
 
     request_.init();
     needSend = false;
@@ -125,7 +126,7 @@ bool Connection::handleConnec(){
         return false;
     }
 
-   return needSend;
+    return needSend;
 }
 
 void Connection::connnectionSend(std::string msg){

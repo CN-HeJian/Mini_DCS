@@ -26,8 +26,8 @@ void Request::init(){
 
 //需要判断能否解析成功
 bool Request::parse(Buffer& buff,const struct sockaddr_in &_addr){
-    std::cout<<"Request::parse: "<<std::endl;
-    buff.printContent();
+    //std::cout<<"Request::parse: "<<std::endl;
+    //buff.printContent();
 
     std::string s = buff.AlltoStr();
     json j = json::parse(s);
@@ -53,7 +53,7 @@ bool Request::parse(Buffer& buff,const struct sockaddr_in &_addr){
 
 //处理缓存服务器请求
 bool Request::request_cacheServer_(){
-    std::cout<<"Request::request_cacheServer_: "<<std::endl;
+    //std::cout<<"Request::request_cacheServer_: "<<std::endl;
     switch(req_data_.req_type){
         case KEEP_ALIVE:
             cacheServer_KeepAlive();

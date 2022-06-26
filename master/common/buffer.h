@@ -52,7 +52,7 @@ public:
     //test
     void printContent()
     {
-        std::cout<<"pointer location info:"<<readPos_<<" "<<writePos_<<std::endl;
+        //std::cout<<"pointer location info:"<<readPos_<<" "<<writePos_<<std::endl;
         for(int i=readPos_;i<=writePos_;++i)
         {
             std::cout<<buffer_[i]<<" ";

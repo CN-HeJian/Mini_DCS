@@ -12,6 +12,7 @@
 
 using namespace std;
 
+
 class Manager{
 public: 
     //获取单例
@@ -27,13 +28,17 @@ public:
     //处理client的分布请求
     void clientGetDistribution(struct sockaddr_in &_addr);
     //发送缓存服务器列表
-    void notifyCacheServer();
+    void notifyCacheServer(int type);
     //超时未收到心跳包,则认为需要更新
     void someCacheServerLost(struct sockaddr_in&_addr);
     //主动关闭服务器
     void shutDownOneMachine(struct sockaddr_in& _addr);
     //依据addr_在已经建立的连接中找到一个fd
     int findFdAcrAddr(struct sockaddr_in & _addr);
+    //依据_addr删除一个机器
+    void deleteOneMachine(const struct sockaddr_in&_addr);
+    //获取ip地址
+    pair<string,int> getIpAndPort(const struct sockaddr_in & _addr);
 private:
     Manager(){};
     ~Manager(){};
@@ -52,6 +57,7 @@ private:
     unordered_map<string,int>   cacheServersMp;
 
     NetServer *server;
+    NodeConHash *hash;
 };
 
 #endif

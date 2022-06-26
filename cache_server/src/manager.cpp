@@ -23,7 +23,7 @@ Manager* Manager::GetInstance(){
         std::unique_lock<std::mutex> lock(m_mutex);
         if(m_SingleInstance==NULL){
             m_SingleInstance = new Manager();
-            m_SingleInstance->server = new NetServer(CACAESERVER1_PORT, 3, 2000000, false, 2);        
+            m_SingleInstance->server = new NetServer(CACAHESERVER2_PORT, 3, 2000000, false, 2);        
             m_SingleInstance->heartBeat = new HeartBeat();
         }
     }

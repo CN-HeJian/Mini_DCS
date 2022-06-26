@@ -104,7 +104,7 @@ void* ThreadPool::worker(void* arg){
         pthread_mutex_lock(&pool->m_mutex);
         // if the task queue is empty, the worker thread block
         while (pool->m_queue->size() == 0 && !pool->m_shutDown){
-            cout << "thread " << to_string(pthread_self()) << " waiting..." << endl;
+            //cout << "thread " << to_string(pthread_self()) << " waiting..." << endl;
             // block thread
             pthread_cond_wait(&pool->m_notEmpty, &pool->m_mutex);
 
@@ -132,12 +132,12 @@ void* ThreadPool::worker(void* arg){
         // unlock thread pool
         pthread_mutex_unlock(&pool->m_mutex);
         // run task
-        cout << "thread " << to_string(pthread_self()) << " start working..." << endl;
+        //cout << "thread " << to_string(pthread_self()) << " start working..." << endl;
         task.function(task.arg);
         task.arg = nullptr;
 
         // task complete
-        cout << "thread " << to_string(pthread_self()) << " end working...";
+        //cout << "thread " << to_string(pthread_self()) << " end working...";
         pthread_mutex_lock(&pool->m_mutex);
         pool->m_busyCount--;
         pthread_mutex_unlock(&pool->m_mutex);

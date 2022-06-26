@@ -13,6 +13,7 @@
 // limitations under the License.
 
 #include "netServer.h"
+#include "../src/manager.h"
 
 
 NetServer::NetServer(int port,int trigMode,int timesOutMs,bool optLinger,int threadNum):
@@ -48,7 +49,7 @@ void NetServer::start(){
         if(timeOutMs_>0)
         {
             timeMS=timer_->getNextHandle();
-            std::cout<<"timeMs:" <<timeMS<<std::endl;
+            //std::cout<<"timeMs:" <<timeMS<<std::endl;
         }
 
         //阻塞的最小毫秒
@@ -75,7 +76,7 @@ void NetServer::start(){
             //读事件
             else if(events & EPOLLIN) {
                 assert(users_.count(fd) > 0);
-                std::cout<<fd<<"============================handle read============================-"<<std::endl;
+                //std::cout<<fd<<"============================handle read============================-"<<std::endl;
                 handleRead(&users_[fd]);
             }
             //写事件
@@ -86,7 +87,7 @@ void NetServer::start(){
             } 
             //异常事件
             else {
-                std::cout<<"============================Unexpected event============================"<<std::endl;
+                //std::cout<<"============================Unexpected event============================"<<std::endl;
             }
         }
     }
@@ -194,7 +195,9 @@ void NetServer::addConnection(int fd,sockaddr_in addr){
 //关闭连接
 void NetServer::closeConnection(Connection* client){
     assert(client);
-    std::cout<<"NetServer::closeConnection..."<<std::endl;
+    //std::cout<<"NetServer::closeConnection..."<<std::endl;
+    Manager::GetInstance()->deleteOneMachine(client->getAddr());
+    users_.erase(client->getFd());
     epoller_->delFd(client->getFd());
     client->closeConnect();
 }
@@ -224,7 +227,7 @@ void NetServer::handleWrite(Connection* client){
     Task tk;
     tk.arg = client;
     tk.function = std::bind(&NetServer::onWrite_,this,std::placeholders::_1);
-    std::cout<<"handleWrite..."<<std::endl;
+    //std::cout<<"handleWrite..."<<std::endl;
     threadPool_->addTask(tk);
 }
 
@@ -235,7 +238,7 @@ void NetServer::handleRead(Connection* client){
     Task tk;
     tk.arg = client;
     tk.function = std::bind(&NetServer::onRead_,this,std::placeholders::_1);
-    std::cout<<"handleRead..."<<std::endl;
+    //std::cout<<"handleRead..."<<std::endl;
     threadPool_->addTask(tk);
 }
 
@@ -247,7 +250,7 @@ void NetServer::onRead_(void* arg){
     int readErrno = 0;
     ret = client->readBuffer(&readErrno);
     if(ret <= 0 && readErrno != EAGAIN) {
-        std::cout<<"do not read data!"<<std::endl;
+        //std::cout<<"do not read data!"<<std::endl;
         closeConnection(client);
         return;
     }

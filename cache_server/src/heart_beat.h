@@ -17,8 +17,6 @@ enum MACHINE_TYPE{
 
 enum REQ_TYPE{
     KEEP_ALIVE,
-    //CLIENT,
-    //MASTER,
 };
 
 enum CLIENT_REQTYPE{
@@ -35,7 +33,7 @@ public:
     void heartBeatSend();
     void HeartStop();
     //master的连接描述符
-    int masterfd_;
+    int masterfd_=-1;
     //一直重连即可!!!
     std::string master_ipport="127.0.0.1:7000";
     int port;
