@@ -49,6 +49,10 @@
 
 Master与哪些机器进行交互？
 1) cacheServer:
+    1)KEEP_ALIVE:
+        判断是不是更新了???
+        1)  删除之前新建的定时任务
+        2)  新建一个定时任务....
 
 2) Master:master容灾
     
@@ -120,4 +124,12 @@ Q: cacheServer Master节点挂掉，心跳包发送失败，CacheServer程序自
 
 
 Q: CacheServer 收不到Master的回复信息
+
+
+Q: CacheServer 客户端关闭没有把iplist更新!!!
+
+//...关闭连接需要更新iplist//---这儿称为主动掉线？？
+不对，掉线是通过心跳包来检测的!!!
+
+
 

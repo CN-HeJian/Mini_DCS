@@ -69,7 +69,6 @@ void Request::cacheServer_KeepAlive(){
     //获取当前的ip port即可!!!
     //managet::get
     Manager::GetInstance()->cacheServerKeepAlive(addr_);
-    
 }
 
 

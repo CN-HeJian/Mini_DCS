@@ -13,7 +13,6 @@ string Manager::getWhichCacheServer(string key){
 
 void Manager::init(){
     server->start();
-    
 }
 
 Manager* Manager::GetInstance(){
@@ -35,27 +34,7 @@ void Manager::deleteInstance(){
     }
 }
 
-void Manager::cacheServerKeepAlive(struct sockaddr_in &_addr){
-    char * client_ip = inet_ntoa(_addr.sin_addr);
-    string strIp = client_ip;
-    int client_port = ntohs(_addr.sin_port);
-    string strPort = std::to_string(client_port);
-    string ipPortStr = strIp+strPort;
-
-    unique_lock<mutex> lock(m_sourceMutex);
-
-    if(cacheServersMp.find(ipPortStr)!=cacheServersMp.end()){
-
-    }else{
-        ipPortLs.push_back(ipPortStr);
-        ipLs.push_back(strIp);
-        portLs.push_back(client_port);
-        cacheServersMp.insert({ipPortStr,0});
-
-        notifyCacheServer();
-    }
-}
-
+//===================================================================client===========================================================//
 void Manager::clientGetDistribution(struct sockaddr_in &_addr){
     json j;
     j["machineType"] = MASTER;
@@ -75,6 +54,52 @@ void Manager::clientGetDistribution(struct sockaddr_in &_addr){
     }
 }
 
+
+//===========================================cacheServer==========================================//
+
+//处理心跳包
+void Manager::cacheServerKeepAlive(struct sockaddr_in &_addr){
+    char * client_ip = inet_ntoa(_addr.sin_addr);
+    string strIp = client_ip;
+    int client_port = ntohs(_addr.sin_port);
+    string strPort = std::to_string(client_port);
+    string ipPortStr = strIp+strPort;
+
+    unique_lock<mutex> lock(m_sourceMutex);
+
+    //已经建立连接的心跳包!!!
+    if(cacheServersMp.find(ipPortStr)!=cacheServersMp.end()){
+        //删除之前设置的定时任务!!!
+        //server->timer_->
+
+        //新建一个定时任务!!!
+
+    }else{
+        ipPortLs.push_back(ipPortStr);
+        ipLs.push_back(strIp);
+        portLs.push_back(client_port);
+        cacheServersMp.insert({ipPortStr,0});
+
+        //findFd
+        int fd = findFd();
+
+        server->timer_->addTimer(5,150,std::bind(&Manager::someCacheServerLost,this,_addr));
+
+        notifyCacheServer();
+    }
+}
+
+//主动关闭一个服务器！！！
+void Manager::shutDownOneMachine(struct sockaddr_in&_addr){
+    
+}
+
+//有一个缓存服务器掉线了
+void Manager::someCacheServerLost(struct sockaddr_in&_addr){
+
+}
+
+//通知其他服务器缓存服务器更新
 void Manager::notifyCacheServer(){
     json j;
     for(int i=0;i<ipLs.size();i++){
@@ -88,3 +113,4 @@ void Manager::notifyCacheServer(){
         //server->resetEpollOut(&c.second);
     }
 }
+

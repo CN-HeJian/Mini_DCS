@@ -4,7 +4,7 @@
 #include "nodeConHash.h"
 #include "netServer.h"
 
-
+#include <fcntl.h>       
 #include <iostream>
 #include <vector>
 #include <unordered_map>
@@ -26,6 +26,10 @@ public:
     void clientGetDistribution(struct sockaddr_in &_addr);
     //发送缓存服务器列表
     void notifyCacheServer();
+    //超时未收到心跳包,则认为需要更新
+    void someCacheServerLost(struct sockaddr_in&_addr);
+    //主动关闭服务器
+    void shutDownOneMachine(struct sockaddr_in&addr);
     
 
 private:
@@ -39,6 +43,7 @@ private:
 private:
 
     std::mutex                  m_sourceMutex;
+
     vector<string>              ipPortLs;
     vector<string>              ipLs;
     vector<int>                 portLs;
