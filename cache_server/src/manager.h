@@ -1,8 +1,9 @@
 #ifndef MANAGER
 #define MANAGER
 
-#include "nodeConHash.h"
+#include "../common/nodeConHash.h"
 #include "netServer.h"
+#include "heart_beat.h"
 
 
 #include <iostream>
@@ -43,8 +44,9 @@ private:
     vector<string>              ipLs;
     vector<int>                 portLs;
     unordered_map<string,int>   cacheServersMp;
-
+public:
     NetServer *server;
+    HeartBeat  *heartBeat;
 };
 
 #endif

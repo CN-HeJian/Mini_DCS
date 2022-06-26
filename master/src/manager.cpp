@@ -13,6 +13,7 @@ string Manager::getWhichCacheServer(string key){
 
 void Manager::init(){
     server->start();
+    
 }
 
 Manager* Manager::GetInstance(){
@@ -82,6 +83,7 @@ void Manager::notifyCacheServer(){
     std::string s = j.dump();
 
     for(auto &c:server->users_){
+        std::cout<<"notifyCacheServer"<<std::endl;
         c.second.connnectionSend(s);
         //server->resetEpollOut(&c.second);
     }

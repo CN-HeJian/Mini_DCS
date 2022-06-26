@@ -44,7 +44,6 @@ public:
 
     void resetEpollIn(Connection* client);
 
-
 private:
     //初始化socket_
     bool initSocket_();
@@ -81,10 +80,11 @@ private:
     uint32_t listenEvent_;
     uint32_t connectionEvent_;
 
-    std::unique_ptr<TimerManager> timer_;
+    //std::unique_ptr<TimerManager> timer_;
     std::unique_ptr<ThreadPool> threadPool_;
     std::unique_ptr<Epoller> epoller_;
 public:
+    std::unique_ptr<TimerManager> timer_;
     std::unordered_map<int,Connection> users_;
 };
 
