@@ -70,24 +70,16 @@ void Manager::cacheServerKeepAlive(struct sockaddr_in &_addr){
     
     //已经建立连接的心跳包!!!
     if(cacheServersMp.find(ipPortStr)!=cacheServersMp.end()){
-        //删除之前设置的定时任务!!!
-        std::cout<<"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"<<std::endl;
-        std::cout<<"Manager::cacheServerKeepAlive: someCacheServerLost "<<std::endl;
-        //server->timer_->update(fd,150);
-
-        //新建一个定时任务!!!
-        //server->timer_->addTimer(fd,150000,std::bind(&Manager::someCacheServerLost,this,_addr));
-
+        //重置定时器
+        server->timer_->update(fd,150);
     }else{
         ipPortLs.push_back(ipPortStr);
         ipLs.push_back(strIp);
         portLs.push_back(client_port);
         cacheServersMp.insert({ipPortStr,0});
-
-         std::cout<<"*****************************************************"<<std::endl;
-        std::cout<<"Manager::cacheServerKeepAlive: someCacheServerLost "<<std::endl;
+        //添加定时器
         server->timer_->addTimer(fd,150,std::bind(&Manager::someCacheServerLost,this,_addr));
-
+        //通知CacheServer
         notifyCacheServer();
     }
 }
@@ -110,7 +102,6 @@ void Manager::shutDownOneMachine(struct sockaddr_in& _addr){
 //有一个缓存服务器掉线了
 void Manager::someCacheServerLost(struct sockaddr_in&_addr){
     //超时就需要移除
-    std::cout<<"*****************************************************"<<std::endl;
     std::cout<<"Manager::someCacheServerLost: "<<std::endl;
     exit(-1);
 }
@@ -122,11 +113,8 @@ void Manager::notifyCacheServer(){
         j.push_back({ipLs[i], portLs[i]});
     }
     std::string s = j.dump();
-
     for(auto &c:server->users_){
         std::cout<<"notifyCacheServer"<<std::endl;
         c.second.connnectionSend(s);
-        //server->resetEpollOut(&c.second);
     }
 }
-

@@ -43,7 +43,6 @@ string NodeConHash::findPhysicalAccordKey(string key){
     //cout<<"ret_Hash: "<<ret_Hash<<endl;
     auto it = mp_itoIpPort.lower_bound(ret_Hash);
     
-
     if(it==mp_itoIpPort.end()){
         //cout<<"it"<<endl;
         return (*mp_itoIpPort.begin()).second;

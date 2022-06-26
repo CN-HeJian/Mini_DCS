@@ -13,10 +13,12 @@
 using namespace std;
 
 class Manager{
-public:
+public: 
+    //获取单例
     static Manager* GetInstance();
+    //销毁单例
     static void deleteInstance();
-    
+    //初始化
     void init();
     //一致性缓存 根据key获取到ip_port
     string getWhichCacheServer(string key);
@@ -32,16 +34,12 @@ public:
     void shutDownOneMachine(struct sockaddr_in& _addr);
     //依据addr_在已经建立的连接中找到一个fd
     int findFdAcrAddr(struct sockaddr_in & _addr);
-
-
-
-
 private:
     Manager(){};
     ~Manager(){};
     Manager(const Manager &signal);
     const Manager &operator = (const Manager&signal);
-
+    //sigleton
     static Manager* m_SingleInstance;
     static std::mutex m_mutex;
 private:

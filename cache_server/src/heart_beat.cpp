@@ -3,6 +3,13 @@
 #include <fcntl.h>       // fcntl()
 #include <pthread.h>
 
+void sleep(int n) {
+  struct timeval delay;
+  delay.tv_sec = 0;
+  delay.tv_usec = n * 1000;
+  select(0, NULL, NULL, NULL, &delay);
+}
+
 //开启一个线程单独发送心跳包!!!
 void* start(void* arg){
     HeartBeat* ht = (HeartBeat*)arg;
@@ -100,7 +107,8 @@ void HeartBeat::heartBeatSend(){
             std::cout<<"sendSuccess"<<std::endl;
         }
         //sleep(15);
-        usleep(1500000);
+
+        sleep(2500);
     }
 }
 
